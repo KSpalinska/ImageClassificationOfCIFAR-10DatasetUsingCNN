@@ -25,7 +25,7 @@ categories = np.unique(y_train)
 n_categories = len(categories)
 number_of_layers=1
 batch_size=64
-epochs=125
+epochs=1
 
 
 
@@ -54,7 +54,7 @@ for i in range(number_of_layers):
         model.add(Activation('relu'))
         model.add(MaxPooling2D(pool_size=(2, 2)))
         model.add(Dropout(0.25))
-    
+
     #next layers
     model.add(Convolution2D(64, (3, 3), padding='same'))
     model.add(Activation('relu'))
@@ -84,7 +84,7 @@ def accuracy(test_x, test_y, model):
     result = model.predict(test_x)
     predicted_class = np.argmax(result, axis=1)
     true_class = np.argmax(test_y, axis=1)
-    num_correct = np.sum(predicted_class == true_class) 
+    num_correct = np.sum(predicted_class == true_class)
     accuracy = float(num_correct)/result.shape[0]
     return (accuracy * 100)
 
@@ -92,8 +92,11 @@ print("Model took %0.2f seconds to train" % (end - start))
 # compute test accuracy
 print("Accuracy on test data is: %0.2f" % accuracy(x_test, y_test, model))
 f = open("batch_size"+str(batch_size)+"_epochow_"+str(epochs),"w")
-f.write(model_info.history['acc'])
-f.write(model_info.history['val_acc'])
+
+for i in range(len(model_info.history['acc'])):
+    f.write("acc: " + str(model_info.history['acc'][i]))
+    f.write("\nval_acc: " + str(model_info.history['val_acc'][i]))
+
 f.close()
 #model_info.history[]
 
