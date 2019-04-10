@@ -1,5 +1,14 @@
-## Image classification of CIFAR-10 dataset using Convolutional Neural Networks (CNN).
+# Image classification of CIFAR-10 dataset using Convolutional Neural Networks (CNN).
 
+## Raport
+https://docs.google.com/document/d/1VKJBsxwoxM6VGisMW-D_FBFQ2Jj5XDk3eGZSGoELb_A/edit
+
+
+## Prezentacja
+https://docs.google.com/presentation/d/1SsHQY8urHLZc0BTOSTajN0t3gpF0OqQU74Y_Yp-s2s4/edit#slide=id.p
+
+
+## Testowanie
 
 Proponowane parametry do przetestowania (wszystkiego ze wszystkim możemy nie zdążyć; możemy wybrać niektóre 
 i np podzielić się tak że każda z nas będzie miała inny batch_size i będzie robić eksperymenty :P ):
@@ -20,15 +29,15 @@ rozmiary w warstwach:
 pool_size: (3,2), (2,2)
 
 
-Inspiracje: 
+## Inspiracje
 
-https://appliedmachinelearning.blog/2018/03/24/achieving-90-accuracy-in-object-recognition-task-on-cifar-10-dataset-with-keras-convolutional-neural-networks/
+* https://appliedmachinelearning.blog/2018/03/24/achieving-90-accuracy-in-object-recognition-task-on-cifar-10-dataset-with-keras-convolutional-neural-networks/
 
-http://cs231n.github.io/convolutional-networks/
+* http://cs231n.github.io/convolutional-networks/
 
 
 
-# Wersja z dwiema warstwami (tak jak jest teraz): 
+## Wersja z dwiema warstwami (tak jak jest teraz)
 ```python
 #Convolutional Neural Network for CIFAR-10 dataset
 #Define the model
@@ -61,7 +70,7 @@ model.add(Dense(n_categories))
 model.add(Activation('softmax'))
 ```
 
-# Wersja z trzema warstwami - propozycja od pana 
+## Wersja z trzema warstwami - propozycja od pana 
 ```python
 ## Convolutional Neural Network for CIFAR-10 dataset
 # Define the model
