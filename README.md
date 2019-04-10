@@ -5,7 +5,9 @@ Proponowane parametry do przetestowania (wszystkiego ze wszystkim możemy nie zd
 i np podzielić się tak że każda z nas będzie miała inny batch_size i będzie robić eksperymenty :P ):
 
 epochs = ( tyle ile damy radę xd ) 125, 250 ?
+
 batch_size: 64, 128, 256, 512
+
 rozmiary w warstwach:
 - 16, 32
 - 32, 64
@@ -27,7 +29,7 @@ http://cs231n.github.io/convolutional-networks/
 
 
 # Wersja z dwiema warstwami (tak jak jest teraz): 
-
+```python
 #Convolutional Neural Network for CIFAR-10 dataset
 #Define the model
 model = Sequential()
@@ -57,10 +59,10 @@ model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(n_categories))
 model.add(Activation('softmax'))
-
+```
 
 # Wersja z trzema warstwami - propozycja od pana 
-
+```python
 ## Convolutional Neural Network for CIFAR-10 dataset
 # Define the model
 model = Sequential()
@@ -98,5 +100,5 @@ model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(n_categories))
 model.add(Activation('softmax'))
-
+```
 
