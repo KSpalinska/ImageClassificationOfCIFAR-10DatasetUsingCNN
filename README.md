@@ -18,7 +18,7 @@ epochs = ( tyle ile damy radę xd ) 125, 250 ?
 batch_size: 64, 128, 256, 512
 
 rozmiary w warstwach:
-- 16, 32
+- 16, 32 - Ola(wezmę się za wszystkie batch_size i epoch 125 i 250 spróbuje)
 - 32, 64
 - 64, 128
 - 128, 256
