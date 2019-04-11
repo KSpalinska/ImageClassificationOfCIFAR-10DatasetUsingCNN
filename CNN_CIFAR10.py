@@ -12,6 +12,7 @@ from keras.layers.convolutional import Convolution2D, MaxPooling2D
 from keras.layers import Activation, Flatten, Dense, Dropout
 from keras.layers.normalization import BatchNormalization
 from keras.utils import np_utils
+import matplotlib.pyplot as plt
 import time
 
 
@@ -51,7 +52,7 @@ y_test = np_utils.to_categorical(y_test, n_categories)
 ## Parametry sieci
 number_of_layers = 1
 batch_size = 64
-epochs = 1
+epochs = 5
 
 
 ## CNN dla zbioru CIFAR-10
@@ -104,12 +105,34 @@ print("Accuracy on test data is: %0.2f" % accuracy(x_test, y_test, model))
 
 
 ## Zapis wyników do pliku
-f = open("batch_size_" + str(batch_size) + ";epochs_" + str(epochs), "w")
+f = open("results/batch_size_" + str(batch_size) + ";epochs_" + str(epochs), "w")
 
 for i in range(len(model_info.history['acc'])):
-    f.write("acc: " + str(model_info.history['acc'][i]))
+    f.write("\nacc: " + str(model_info.history['acc'][i]))
     f.write("\nval_acc: " + str(model_info.history['val_acc'][i]))
 
 f.close()
 
 #model_info.history[]
+
+# wykres accuracy
+plt.plot(model_info.history['acc'])
+plt.plot(model_info.history['val_acc'])
+plt.title('model accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc='upper left')
+plt.savefig('plots/accuracy_epochs_'+str(epochs)+'_batchsize_'+str(batch_size)+'.png')
+plt.show()
+
+
+# wykres loss
+plt.plot(model_info.history['loss'])
+plt.plot(model_info.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc='upper left')
+plt.savefig('plots/loss_epochs_'+str(epochs)+'_batchsize_'+str(batch_size)+'.png')
+plt.show()
+
