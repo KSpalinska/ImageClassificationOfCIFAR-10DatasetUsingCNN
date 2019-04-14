@@ -22,7 +22,7 @@ rozmiary w warstwach:
 - 32, 64 - Kasia (tak samo jak wyżej)
 - 64, 128
 - 128, 256
-- 16, 32, 64
+- 16, 32, 64 - Ola( wezmę epochs 125 i batch size 64)
 - 32, 64, 128
 - 64, 128, 256 
 

@@ -52,34 +52,41 @@ y_test = np_utils.to_categorical(y_test, n_categories)
 ## Parametry sieci
 number_of_layers = 1
 batch_size = 64
-epochs = 5
+epochs = 125
 
 
 ## CNN dla zbioru CIFAR-10
 
 # Zdefiniwanie modelu
 model = Sequential()
-
-# Dodawanie warstw
+#Add layers
 for i in range(number_of_layers):
-    if i == 0:
-        # layer0
-        model.add(Convolution2D(32, (3, 3), padding = 'same', input_shape = x_train.shape[1:]))
+    if i ==0 :
+        #layer0
+        model.add(Convolution2D(16, (3, 3), padding='same',input_shape=x_train.shape[1:]))
         model.add(Activation('relu'))
-        model.add(Convolution2D(32, (3, 3)))
+        model.add(Convolution2D(16, (3, 3)))
         model.add(Activation('relu'))
-        model.add(MaxPooling2D(pool_size = (2, 2)))
+        model.add(MaxPooling2D(pool_size=(2, 2)))
         model.add(Dropout(0.25))
 
-    # next layers
-    model.add(Convolution2D(64, (3, 3), padding = 'same'))
+    #next layers
+    model.add(Convolution2D(32, (3, 3), padding='same'))
+    model.add(Activation('relu'))
+    model.add(Convolution2D(32, (3, 3)))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Dropout(0.25))
+    
+    #next layers
+    model.add(Convolution2D(64, (3, 3), padding='same'))
     model.add(Activation('relu'))
     model.add(Convolution2D(64, (3, 3)))
     model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size = (2, 2)))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
 
-# flatten layers
+#flatten layers
 model.add(Flatten())
 model.add(Dense(512))
 model.add(Activation('relu'))
