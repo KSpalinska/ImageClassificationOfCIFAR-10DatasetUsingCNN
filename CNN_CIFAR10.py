@@ -50,8 +50,7 @@ y_test = np_utils.to_categorical(y_test, n_categories)
 
 
 ## Parametry sieci
-number_of_layers = 1
-batch_size = 64
+batch_size = 256
 epochs = 125
 
 
@@ -59,34 +58,33 @@ epochs = 125
 
 # Zdefiniwanie modelu
 model = Sequential()
-#Add layers
-for i in range(number_of_layers):
-    if i ==0 :
-        #layer0
-        model.add(Convolution2D(16, (3, 3), padding='same',input_shape=x_train.shape[1:]))
-        model.add(Activation('relu'))
-        model.add(Convolution2D(16, (3, 3)))
-        model.add(Activation('relu'))
-        model.add(MaxPooling2D(pool_size=(2, 2)))
-        model.add(Dropout(0.25))
 
-    #next layers
-    model.add(Convolution2D(32, (3, 3), padding='same'))
-    model.add(Activation('relu'))
-    model.add(Convolution2D(32, (3, 3)))
-    model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Dropout(0.25))
-    
-    #next layers
-    model.add(Convolution2D(64, (3, 3), padding='same'))
-    model.add(Activation('relu'))
-    model.add(Convolution2D(64, (3, 3)))
-    model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Dropout(0.25))
+# Dodanie warstw
 
-#flatten layers
+# layer0
+model.add(Convolution2D(64, (3, 3), padding = 'same', input_shape = x_train.shape[1:]))
+model.add(Activation('relu'))
+model.add(Convolution2D(64, (3, 3)))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size = (2, 2)))
+model.add(Dropout(0.25))
+
+# next layers
+model.add(Convolution2D(128, (3, 3), padding = 'same'))
+model.add(Activation('relu'))
+model.add(Convolution2D(128, (3, 3)))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size = (2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Convolution2D(256, (3, 3), padding = 'same'))
+model.add(Activation('relu'))
+model.add(Convolution2D(256, (3, 3)))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size = (2, 2)))
+model.add(Dropout(0.25))
+
+# flatten layers
 model.add(Flatten())
 model.add(Dense(512))
 model.add(Activation('relu'))
@@ -120,26 +118,24 @@ for i in range(len(model_info.history['acc'])):
 
 f.close()
 
-#model_info.history[]
 
-# wykres accuracy
+## Wykres accuracy
 plt.plot(model_info.history['acc'])
 plt.plot(model_info.history['val_acc'])
 plt.title('model accuracy')
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
-plt.legend(['train', 'test'], loc='upper left')
-plt.savefig('plots/accuracy_epochs_'+str(epochs)+'_batchsize_'+str(batch_size)+'.png')
+plt.legend(['train', 'test'], loc = 'upper left')
+plt.savefig('plots/accuracy_epochs_' + str(epochs) + '_batchsize_' + str(batch_size) + '.png')
 plt.show()
 
 
-# wykres loss
+## Wykres loss
 plt.plot(model_info.history['loss'])
 plt.plot(model_info.history['val_loss'])
 plt.title('model loss')
 plt.ylabel('loss')
 plt.xlabel('epoch')
-plt.legend(['train', 'test'], loc='upper left')
-plt.savefig('plots/loss_epochs_'+str(epochs)+'_batchsize_'+str(batch_size)+'.png')
+plt.legend(['train', 'test'], loc = 'upper left')
+plt.savefig('plots/loss_epochs_' + str(epochs) + '_batchsize_' + str(batch_size) + '.png')
 plt.show()
-
